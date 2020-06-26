@@ -1,15 +1,25 @@
 {
   "name": "pokemon-battle-vue-3",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "main.ts",
   "license": "MIT",
   "dependencies": {
-    "vue": "^3.0.0-beta.15"
+    "-": "^0.0.1",
+    "D": "^1.0.0",
+    "clean-webpack-plugin": "^3.0.0",
+    "vue": "^3.0.0-beta.15",
+    "vue-loader": "^16.0.0-beta.3"
+  },
+  "scripts": {
+    "dev": "webpack-dev-server"
   },
   "devDependencies": {
+    "@vue/compiler-sfc": "^3.0.0-beta.15",
     "eslint": "^7.3.1",
     "eslint-config-ushironoko-vue": "^1.0.2",
+    "html-webpack-plugin": "^4.3.0",
     "prettier": "^2.0.5",
+    "ts-loader": "^7.0.5",
     "typescript": "^3.9.5",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.12",
