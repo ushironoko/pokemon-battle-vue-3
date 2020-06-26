@@ -4,7 +4,7 @@ import { PokemonList, BaseStatus } from '../config/pokemon'
 import { useStatus } from '../composable/useStaus'
 
 export default defineComponent({
-  name: 'BattleField',
+  name: 'FieldComponent',
   setup() {
     const pokemon = inject<PokemonList>('pokemonId')
     let gurchompStatus = {} as BaseStatus
