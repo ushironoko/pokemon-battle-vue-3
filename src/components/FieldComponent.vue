@@ -7,15 +7,15 @@ export default defineComponent({
   name: 'FieldComponent',
   setup() {
     const pokemon = inject<PokemonList>('pokemonId')
-    let gurchompStatus = {} as BaseStatus
+    let garchompStatus = {} as BaseStatus
     let pikachuStaus = {} as BaseStatus
 
     if (pokemon) {
-      gurchompStatus = useStatus(pokemon[0])
+      garchompStatus = useStatus(pokemon[0])
       pikachuStaus = useStatus(pokemon[1])
     }
     return {
-      gurchompStatus,
+      garchompStatus,
       pikachuStaus,
     }
   },
@@ -24,7 +24,7 @@ export default defineComponent({
 
 <template>
   <div>
-    <div>ガブ：{{ gurchompStatus }}</div>
+    <div>ガブ：{{ garchompStatus }}</div>
     <div>ピカ：{{ pikachuStaus }}</div>
   </div>
 </template>
