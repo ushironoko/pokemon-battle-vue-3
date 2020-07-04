@@ -1,30 +1,37 @@
 <script lang="ts">
-import { defineComponent, inject } from 'vue'
-import { PokemonList, BaseStatus } from '../config/pokemon'
-import { useStatus } from '../composable/useStaus'
+import { defineComponent } from 'vue'
+import { BaseStatus } from '../config/pokemon'
+import { usePokemons, useStatus, useGigantaMax } from '../composable/pokedex'
 
 export default defineComponent({
   name: 'FieldComponent',
   setup() {
-    const pokemon = inject<PokemonList>('pokemonId')
+    const pokemonList = usePokemons()
     let garchompStatus = {} as BaseStatus
     let pikachuStaus = {} as BaseStatus
 
-    if (pokemon) {
-      garchompStatus = useStatus(pokemon[0])
-      pikachuStaus = useStatus(pokemon[1])
+    if (pokemonList) {
+      garchompStatus = useStatus(pokemonList[0])
+      pikachuStaus = useStatus(pokemonList[1])
     }
+
+    const gigantaMax = (baseStatus: BaseStatus) => useGigantaMax(baseStatus)
+
     return {
+      pokemonList,
       garchompStatus,
       pikachuStaus,
+      gigantaMax,
     }
   },
 })
 </script>
 
 <template>
-  <div>
-    <div>ガブ：{{ garchompStatus }}</div>
-    <div>ピカ：{{ pikachuStaus }}</div>
+  <div v-if="pokemonList">
+    <div>{{ pokemonList[0].name }}：{{ garchompStatus }}</div>
+    <button @click="gigantaMax(garchompStatus)">GigantaMax</button>
+    <div>{{ pokemonList[1].name }}：{{ pikachuStaus }}</div>
+    <button @click="gigantaMax(pikachuStaus)">GigantaMax</button>
   </div>
 </template>

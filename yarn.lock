@@ -2,11 +2,6 @@
 # yarn lockfile v1
 
 
-"-@^0.0.1":
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/-/-/--0.0.1.tgz#db6db7cd866142880dd03e5b8781d1b4fac0e5bd"
-  integrity sha512-3HfneK3DGAm05fpyj20sT3apkNcvPpCuccOThOPdzz8sY7GgQGe0l93XH9bt+YzibcTIgUAIMoyVJI740RtgyQ==
-
 "@babel/code-frame@^7.0.0":
   version "7.10.3"
   resolved "https://registry.yarnpkg.com/@babel/code-frame/-/code-frame-7.10.3.tgz#324bcfd8d35cd3d47dae18cde63d752086435e9a"
@@ -425,11 +420,6 @@
   version "4.2.2"
   resolved "https://registry.yarnpkg.com/@xtuc/long/-/long-4.2.2.tgz#d291c6a4e97989b5c61d9acf396ae4fe133a718d"
   integrity sha512-NuHqBY1PB/D8xU6s/thBgOAiAP7HOYDQ32+BFZILJ8ivkUkAHQnWfn6WhL79Owj1qmUnoN/YPhktdIoucipkAQ==
-
-D@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/D/-/D-1.0.0.tgz#c348a4e034f72847be51206fc530fc089e9cc2a9"
-  integrity sha512-nQvrCBu7K2pSSEtIM0EEF03FVjcczCXInMt3moLNFbjlWx6bZrX72uT6/1uAXDbnzGUAx9gTyDiQ+vrFi663oA==
 
 accepts@~1.3.4, accepts@~1.3.5, accepts@~1.3.7:
   version "1.3.7"
@@ -1634,10 +1624,10 @@ eslint-config-prettier@latest:
   dependencies:
     get-stdin "^6.0.0"
 
-eslint-config-ushironoko-vue@^1.0.2:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/eslint-config-ushironoko-vue/-/eslint-config-ushironoko-vue-1.0.3.tgz#fe621e75dad6f9fa4a035d6ab86cd23b43821475"
-  integrity sha512-ikzUP0jnmslACnhf76MLFejbkgvuhRgvFg4m6TXLZEIPsEeCebtQKBSm/UyOXx7zdL/ptLhhr0iZjReja7TMsw==
+eslint-config-ushironoko-vue@^1.0.8:
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/eslint-config-ushironoko-vue/-/eslint-config-ushironoko-vue-1.0.8.tgz#60501f840f89890e920394ac4a1c90c8e42cf998"
+  integrity sha512-B4WOZVZnUVmKImOH2/vSEVVBa9vfGZWravXd+PKRNw8ZwdRDxmL6DP6cp6cJlqyTEY0QWKb9jfgcB4JAhoB3Xw==
   dependencies:
     "@typescript-eslint/eslint-plugin" "^3.5.0"
     "@typescript-eslint/parser" "^3.5.0"

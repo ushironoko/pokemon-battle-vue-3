@@ -1,6 +1,5 @@
 <script lang="ts">
-import { defineComponent, provide } from 'vue'
-import { pokemon } from './config/pokemon'
+import { defineComponent } from 'vue'
 import FieldComponent from './components/FieldComponent.vue'
 
 export default defineComponent({
@@ -9,9 +8,6 @@ export default defineComponent({
     FieldComponent,
   },
   setup() {
-    const pokemonId = 'pokemonId'
-    provide(pokemonId, pokemon)
-
     const test = 'test'
     return {
       test,
