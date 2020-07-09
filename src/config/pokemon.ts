@@ -1,4 +1,5 @@
 export type Pokemon = {
+  id: number
   name: string
   baseStatus: BaseStatus
   lv: number
@@ -16,41 +17,61 @@ export type BaseStatus = {
   sp: number
 }
 
+export type Status = BaseStatus
+
 export type Move = {
-  [k: string]: {
-    type: string
-    power: number
-  }
+  name: string
+  type: string
+  power: number
+  evas: number
+  effect?: (args: any[]) => any
 }
 
-export type MoveList = Move[]
+export type MoveList = Move[] | []
+
+export type BattlePokemonStatus = {
+  name: string
+  status: Status | null
+  move: MoveList
+  isVictory: boolean
+}
+
+export type BattleStatus = {
+  tern: number
+  own: BattlePokemonStatus
+  enemy: BattlePokemonStatus
+}
 
 export const pokemon: PokemonList = [
   {
-    name: 'ガブリアス',
+    id: 145,
+    name: 'ギャラドス',
     baseStatus: {
-      hp: 108,
-      atk: 130,
-      def: 95,
-      spAtk: 80,
-      spDef: 85,
-      sp: 102,
+      hp: 95,
+      atk: 125,
+      def: 79,
+      spAtk: 60,
+      spDef: 100,
+      sp: 81,
     },
     lv: 50,
     moveList: [
       {
-        earthQuake: {
-          type: 'ground',
-          power: 100,
-        },
-        outrage: {
-          type: 'dragon',
-          power: 120,
-        },
+        name: 'earthquake',
+        type: 'ground',
+        power: 100,
+        evas: 100,
+      },
+      {
+        name: 'outrage',
+        type: 'dragon',
+        power: 120,
+        evas: 100,
       },
     ],
   },
   {
+    id: 194,
     name: 'ピカチュウ',
     baseStatus: {
       hp: 35,
@@ -63,14 +84,16 @@ export const pokemon: PokemonList = [
     lv: 50,
     moveList: [
       {
-        thunderBolt: {
-          type: 'electric',
-          power: 90,
-        },
-        drainingKiss: {
-          type: 'electric',
-          power: 90,
-        },
+        name: 'thunderbolt',
+        type: 'electric',
+        power: 90,
+        evas: 100,
+      },
+      {
+        name: 'drainingkiss',
+        type: 'electric',
+        power: 90,
+        evas: 100,
       },
     ],
   },

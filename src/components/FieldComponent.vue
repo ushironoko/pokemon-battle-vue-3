@@ -1,37 +1,47 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { BaseStatus } from '../config/pokemon'
-import { usePokemons, useStatus, useGigantaMax } from '../composable/pokedex'
+import {
+  usePokemons,
+  useStatus,
+  useBattel,
+  createBattlePokemon,
+} from '../composables/pokedex'
 
 export default defineComponent({
   name: 'FieldComponent',
   setup() {
+    const {
+      readOnlyBattleStatus: battle,
+      setOwn,
+      setEnemy,
+      countUpTern,
+    } = useBattel()
     const pokemonList = usePokemons()
-    let garchompStatus = {} as BaseStatus
-    let pikachuStaus = {} as BaseStatus
+    const p1 = pokemonList[0]
+    const p2 = pokemonList[1]
 
-    if (pokemonList) {
-      garchompStatus = useStatus(pokemonList[0])
-      pikachuStaus = useStatus(pokemonList[1])
-    }
+    const ownStatus = useStatus(p1)
+    const enemyStatus = useStatus(p2)
 
-    const gigantaMax = (baseStatus: BaseStatus) => useGigantaMax(baseStatus)
+    const own = createBattlePokemon(p1.name, ownStatus, p1.moveList)
+    const enemy = createBattlePokemon(p2.name, enemyStatus, p2.moveList)
 
+    setOwn(own)
+    setEnemy(enemy)
+    countUpTern()
     return {
-      pokemonList,
-      garchompStatus,
-      pikachuStaus,
-      gigantaMax,
+      battle,
     }
   },
 })
 </script>
 
 <template>
-  <div v-if="pokemonList">
-    <div>{{ pokemonList[0].name }}：{{ garchompStatus }}</div>
-    <button @click="gigantaMax(garchompStatus)">GigantaMax</button>
-    <div>{{ pokemonList[1].name }}：{{ pikachuStaus }}</div>
-    <button @click="gigantaMax(pikachuStaus)">GigantaMax</button>
+  <div v-if="battle">
+    <div>{{ battle.enemy.name }}：{{ battle.enemy.status }}</div>
+    <div>{{ battle.own.name }}：{{ battle.own.status }}</div>
+    <ul v-for="move in battle.own.move" :key="move.name">
+      <li>{{ move.name }}</li>
+    </ul>
   </div>
 </template>

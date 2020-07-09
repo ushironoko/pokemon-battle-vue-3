@@ -7,12 +7,6 @@ export default defineComponent({
   components: {
     FieldComponent,
   },
-  setup() {
-    const test = 'test'
-    return {
-      test,
-    }
-  },
 })
 </script>
 
