@@ -1,3 +1,4 @@
+import { Ref, UnwrapRef } from 'vue'
 export type Pokemon = {
   id: number
   name: string
@@ -26,14 +27,14 @@ export type Move = {
   type: string
   power: number
   evas: number
-  effect?: (args: any[]) => any
+  effect?: (args: Ref<any> | UnwrapRef<any>) => any
 }
 
 export type MoveList = Move[] | []
 
 export type BattlePokemonStatus = {
   name: string
-  status: Status | null
+  status: Status
   move: MoveList
   isVictory: boolean
 }
@@ -90,6 +91,7 @@ export const pokemon: PokemonList = [
         type: 'electric',
         power: 90,
         evas: 100,
+        effect: (enemy: BattlePokemonStatus) => enemy.status.hp - 100,
       },
       {
         name: 'drainingkiss',

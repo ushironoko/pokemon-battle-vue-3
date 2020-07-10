@@ -1,12 +1,12 @@
-import { reactive, InjectionKey, inject, readonly } from 'vue'
 import {
   PokemonList,
-  Pokemon,
   Status,
+  BaseStatus,
   BattleStatus,
   BattlePokemonStatus,
   MoveList,
 } from '../config/pokemon'
+import { reactive, InjectionKey, inject, readonly } from 'vue'
 
 const IV = 31
 const EV = 0
@@ -28,10 +28,10 @@ export const usePokemons = () => {
   return list
 }
 
-export const createBattlePokemon = (n?: string, s?: Status, m?: MoveList) => {
+export const createBattlePokemon = (name = '', s?: Status, m?: MoveList) => {
   const battlePoke: BattlePokemonStatus = {
-    name: n || '',
-    status: s || null,
+    name,
+    status: s || createEmptyStatus(),
     move: m || [],
     isVictory: false,
   }
@@ -67,13 +67,27 @@ export const calcABCDS = (baseStatus: number) => {
   return Math.floor(((baseStatus * 2 + IV + EV / 4) * LV) / 100 + 5 * Nature)
 }
 
-export const useStatus = (pokemon: Pokemon) => {
-  const hp = calcHp(pokemon.baseStatus.hp)
-  const atk = calcABCDS(pokemon.baseStatus.atk)
-  const def = calcABCDS(pokemon.baseStatus.def)
-  const spAtk = calcABCDS(pokemon.baseStatus.spAtk)
-  const spDef = calcABCDS(pokemon.baseStatus.spDef)
-  const sp = calcABCDS(pokemon.baseStatus.sp)
+function createEmptyStatus() {
+  const emptyBaseStatus: BaseStatus = {
+    hp: 0,
+    atk: 0,
+    def: 0,
+    spAtk: 0,
+    spDef: 0,
+    sp: 0,
+  }
+  return useStatus(emptyBaseStatus)
+}
+
+export const useStatus = (baseStatus: BaseStatus) => {
+  const hp = calcHp(baseStatus.hp)
+  const atk = calcABCDS(baseStatus.atk)
+  const def = calcABCDS(baseStatus.def)
+  const spAtk = calcABCDS(baseStatus.spAtk)
+  const spDef = calcABCDS(baseStatus.spDef)
+  const sp = calcABCDS(baseStatus.sp)
+  const acc = 100
+  const eva = 100
   return reactive<Status>({
     hp,
     atk,
@@ -81,5 +95,7 @@ export const useStatus = (pokemon: Pokemon) => {
     spAtk,
     spDef,
     sp,
+    acc,
+    eva,
   })
 }
