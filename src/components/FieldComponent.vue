@@ -1,21 +1,23 @@
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, PropType } from 'vue'
 import {
   usePokemons,
   useStatus,
   useBattel,
   createBattlePokemon,
 } from '../composables/pokedex'
+import { BattleStatus } from '../config/pokemon'
 
 export default defineComponent({
   name: 'FieldComponent',
+  props: {
+    battle: {
+      type: Object as PropType<Readonly<BattleStatus>>,
+      required: true,
+    },
+  },
   setup() {
-    const {
-      readOnlyBattleStatus: battle,
-      setOwn,
-      setEnemy,
-      countUpTern,
-    } = useBattel()
+    const { setOwn, setEnemy, countUpTern } = useBattel()
     const pokemonList = usePokemons()
     const p1 = pokemonList[0]
     const p2 = pokemonList[1]
@@ -29,9 +31,6 @@ export default defineComponent({
     setOwn(own)
     setEnemy(enemy)
     countUpTern()
-    return {
-      battle,
-    }
   },
 })
 </script>

@@ -38,13 +38,13 @@ export const createBattlePokemon = (n?: string, s?: Status, m?: MoveList) => {
   return battlePoke
 }
 
-export const createBattleStatus = (): BattleStatus => {
+export const createBattleStatus = () => {
   const battleStatus: BattleStatus = {
     tern: 0,
     own: createBattlePokemon(),
     enemy: createBattlePokemon(),
   }
-  return reactive(battleStatus)
+  return reactive<BattleStatus>(battleStatus)
 }
 
 export const useBattel = () => {
@@ -52,7 +52,7 @@ export const useBattel = () => {
   if (!battleStatus) {
     throw new Error('useBattel() is called without provider.')
   }
-  const readOnlyBattleStatus = readonly(battleStatus)
+  const readOnlyBattleStatus = readonly<BattleStatus>(battleStatus)
   const setOwn = (own: BattlePokemonStatus) => (battleStatus.own = own)
   const setEnemy = (enemy: BattlePokemonStatus) => (battleStatus.enemy = enemy)
   const countUpTern = () => battleStatus.tern++
@@ -67,14 +67,14 @@ export const calcABCDS = (baseStatus: number) => {
   return Math.floor(((baseStatus * 2 + IV + EV / 4) * LV) / 100 + 5 * Nature)
 }
 
-export const useStatus = (pokemon: Pokemon): Status => {
+export const useStatus = (pokemon: Pokemon) => {
   const hp = calcHp(pokemon.baseStatus.hp)
   const atk = calcABCDS(pokemon.baseStatus.atk)
   const def = calcABCDS(pokemon.baseStatus.def)
   const spAtk = calcABCDS(pokemon.baseStatus.spAtk)
   const spDef = calcABCDS(pokemon.baseStatus.spDef)
   const sp = calcABCDS(pokemon.baseStatus.sp)
-  return reactive({
+  return reactive<Status>({
     hp,
     atk,
     def,

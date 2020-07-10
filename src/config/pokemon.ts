@@ -8,16 +8,18 @@ export type Pokemon = {
 
 export type PokemonList = Pokemon[]
 
-export type BaseStatus = {
+export type Status = {
   hp: number
   atk: number
   def: number
   spAtk: number
   spDef: number
   sp: number
+  acc?: number
+  eva?: number
 }
 
-export type Status = BaseStatus
+export type BaseStatus = Omit<Status, 'acc' | 'eva'>
 
 export type Move = {
   name: string
