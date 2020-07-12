@@ -14,12 +14,7 @@ export default defineComponent({
     BattlePokemon,
   },
   setup() {
-    const {
-      readOnlyBattleStatus: battle,
-      setOwn,
-      setEnemy,
-      countUpTern,
-    } = useBattel()
+    const { battle, setOwn, setEnemy, countUpTern } = useBattel()
     const pokemonList = usePokemons()
     const p1 = pokemonList[0]
     const p2 = pokemonList[1]
@@ -33,6 +28,7 @@ export default defineComponent({
     setOwn(own)
     setEnemy(enemy)
     countUpTern()
+
     return {
       battle,
     }

@@ -13,10 +13,6 @@ const EV = 0
 const LV = 50
 const Nature = 1
 
-export declare type SetOwnEnemy = (
-  battlepokemonStatus: BattlePokemonStatus,
-) => BattlePokemonStatus
-
 export const pokemonsSymbol: InjectionKey<PokemonList> = Symbol()
 export const battleStatusSymbol: InjectionKey<BattleStatus> = Symbol()
 
@@ -52,11 +48,11 @@ export const useBattel = () => {
   if (!battleStatus) {
     throw new Error('useBattel() is called without provider.')
   }
-  const readOnlyBattleStatus = readonly<BattleStatus>(battleStatus)
+  const battle = readonly<BattleStatus>(battleStatus)
   const setOwn = (own: BattlePokemonStatus) => (battleStatus.own = own)
   const setEnemy = (enemy: BattlePokemonStatus) => (battleStatus.enemy = enemy)
   const countUpTern = () => battleStatus.tern++
-  return { readOnlyBattleStatus, setOwn, setEnemy, countUpTern }
+  return { battle, setOwn, setEnemy, countUpTern }
 }
 
 export const calcHp = (hp: number) => {
